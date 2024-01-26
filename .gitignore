@@ -1,2 +1,8 @@
 cmake-build-debug/
 .idea/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+
+llvm/
+llvm-17.0.1.src/

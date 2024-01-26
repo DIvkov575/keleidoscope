@@ -168,7 +168,6 @@ int main() {
     TheJIT = std::make_unique<KaleidoscopeJIT>();
 
     // Run the main "interpreter loop" now.
-    MainLoop();
 
     return 0;
 }
