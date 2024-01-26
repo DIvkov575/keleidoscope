@@ -7,4 +7,5 @@ add_executable(keleidoscope main.cpp
         ast.cpp
         ast.h
         parser.cpp
-        tokens.cpp)
+        tokens.cpp
+        optimizations.cpp)

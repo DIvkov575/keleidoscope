@@ -128,10 +128,13 @@ Function *FunctionAST::codegen() {
 
     if (Value *RetVal = Body->codegen()) {
         // Finish off the function.
-        Builder->CreateRet(RetVal);
+        Builder.CreateRet(RetVal);
 
         // Validate the generated code, checking for consistency.
         verifyFunction(*TheFunction);
+
+        // Optimize the function.
+        TheFPM->run(*TheFunction, *TheFAM);
 
         return TheFunction;
     }
