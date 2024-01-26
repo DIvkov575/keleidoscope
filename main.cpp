@@ -25,6 +25,7 @@ static std::unique_ptr<LLVMContext> TheContext;
 static std::unique_ptr<IRBuilder<>> Builder(TheContext);
 static std::unique_ptr<Module> TheModule;
 static std::map<std::string, Value *> NamedValues;
+static std::unique_ptr<KaleidoscopeJIT> TheJIT;
 
 Value *LogErrorV(const char *Str) {
     LogError(Str);
@@ -150,7 +151,10 @@ Function *FunctionAST::codegen() {
 
 
 int main() {
-    // Install standard binary operators.
+    InitializeNativeTarget();
+    InitializeNativeTargetAsmPrinter();
+    InitializeNativeTargetAsmParser();    // Install standard binary operators.
+
     // 1 is lowest precedence.
     BinopPrecedence['<'] = 10;
     BinopPrecedence['+'] = 20;
@@ -160,6 +164,8 @@ int main() {
     // Prime the first token.
     fprintf(stderr, "ready> ");
     getNextToken();
+
+    TheJIT = std::make_unique<KaleidoscopeJIT>();
 
     // Run the main "interpreter loop" now.
     MainLoop();
