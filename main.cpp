@@ -1,9 +1,16 @@
 #include "ast.cpp"
 #include <iostream>
 
-// The lexer returns tokens [0-255] if it is an unknown character, otherwise one
-// of these for known things.
 
+static std::unique_ptr<LLVMContext> TheContext;
+static std::unique_ptr<IRBuilder<>> Builder(TheContext);
+static std::unique_ptr<Module> TheModule;
+static std::map<std::string, Value *> NamedValues;
+
+Value *LogErrorV(const char *Str) {
+    LogError(Str);
+    return nullptr;
+}
 
 
 
