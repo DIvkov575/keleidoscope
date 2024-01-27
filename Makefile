@@ -117,6 +117,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named llvm
+
+# Build rule for target.
+llvm: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 llvm
+.PHONY : llvm
+
+# fast build rule for target.
+llvm/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/llvm.dir/build.make CMakeFiles/llvm.dir/build
+.PHONY : llvm/fast
+
+#=============================================================================
 # Target rules for targets named keleidoscope
 
 # Build rule for target.
@@ -257,6 +270,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... llvm"
 	@echo "... keleidoscope"
 	@echo "... ast.o"
 	@echo "... ast.i"

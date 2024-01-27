@@ -3,6 +3,7 @@ cmake-build-debug/
 CMakeFiles/
 CMakeCache.txt
 cmake_install.cmake
+Makefile
 
 llvm/
 llvm-17.0.1.src/
