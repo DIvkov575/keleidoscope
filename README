@@ -1,4 +1,8 @@
 https://llvm.org/docs/tutorial/MyFirstLanguageFrontend/LangImpl04.html
 
+dont use cmake -> cmake is inorder to enable IntelliJ intense
+
 brew install llvm@15
+make
+./main
 

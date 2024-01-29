@@ -84,8 +84,7 @@ static void MainLoop() {
         HandleDefinition();
         break;
       case tok_extern:
-        HandleExtern()
-
+        HandleExtern();
         break;
       default:
         HandleTopLevelExpression();
@@ -104,11 +103,12 @@ int main(int argc, char* argv[]) {
     // for (auto t: argv) {
     //   std::cout << t;
     // }
-  string args = argv;
+  std::string args = argv;
   std::cout << args;
+
   }
 
-  std::
+
 
 
 
