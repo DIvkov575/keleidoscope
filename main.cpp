@@ -1,8 +1,5 @@
-// lexer headers
 #include "lexer/lexer.h"
 #include "lexer/token.h"
-
-// AST headers
 #include "ast/BinaryExprAST.h"
 #include "ast/CallExprAST.h"
 #include "ast/ExprAST.h"
@@ -10,17 +7,9 @@
 #include "ast/NumberExprAST.h"
 #include "ast/PrototypeAST.h"
 #include "ast/VariableExprAST.h"
-
-// parser headers
 #include "parser/parser.h"
-
-// logger headers
 #include "logger/logger.h"
-
-// kaleidoscope headers
 #include "kaleidoscope/kaleidoscope.h"
-
-// LLVM headers
 #include "llvm/ADT/APFloat.h"
 #include "llvm/ADT/STLExtras.h"
 #include "llvm/IR/BasicBlock.h"
@@ -33,13 +22,13 @@
 #include "llvm/IR/Type.h"
 #include "llvm/IR/Verifier.h"
 
-// stdlib headers
 #include <algorithm>
 #include <cctype>
 #include <cstdio>
 #include <cstdlib>
 #include <map>
 #include <memory>
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -83,41 +72,59 @@ static void HandleTopLevelExpression() {
 
 static void MainLoop() {
   while (true) {
-    fprintf(stderr, "ready> ");
+    fprintf(stderr, "> ");
 
     switch (CurTok) {
       case tok_eof:
-      return;
+        return;
       case ';':
-      getNextToken();
-      break;
+        getNextToken();
+        break;
       case tok_def:
-      HandleDefinition();
-      break;
+        HandleDefinition();
+        break;
       case tok_extern:
-      HandleExtern();
-      break;
+        HandleExtern()
+
+        break;
       default:
-      HandleTopLevelExpression();
-      break;
+        HandleTopLevelExpression();
+        break;
     }
   }
 }
 
-int main() {
+int main(int argc, char* argv[]) {
   BinopPrecedence['<'] = 10;
   BinopPrecedence['+'] = 20;
   BinopPrecedence['-'] = 20;
   BinopPrecedence['*'] = 40;
 
-  fprintf(stderr, "ready> ");
-  getNextToken();
+  if (argc > 1) {
+    // for (auto t: argv) {
+    //   std::cout << t;
+    // }
+  string args = argv;
+  std::cout << args;
+  }
 
-  TheModule = std::make_unique<Module>("My awesome JIT", TheContext);
+  std::
 
-  MainLoop();
 
-  TheModule->print(errs(), nullptr);
 
+
+
+  // fprintf(stderr, "ready> ");
+  // getNextToken();
+  //
+  // TheModule = std::make_unique<Module>("My awesome JIT", TheContext);
+  //
+  //
+  // fprintf(stderr, "CT> ");
+  // MainLoop();
+  //
+  // TheModule->print(errs(), nullptr);
+  //
   return 0;
 }
+
